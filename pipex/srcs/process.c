@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 16:07:56 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/03 17:10:45 by ellucas          ###   ########.fr       */
+/*   Created: 2025/04/03 17:12:02 by ellucas           #+#    #+#             */
+/*   Updated: 2025/04/03 17:15:14 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_error(char	*msg)
+void	first_child(t_pipex *pipex)
 {
-	ft_printf("ERROR: %s\n", msg);
-	exit;
+
 }
 
-void	free_pipex(t_pipex *pipex)
+void	second_child(t_pipex *pipex)
+{
+
+}
+
+void	*find_path(char *cmd, char **envp)
 {
 	
 }

@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:28:14 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/03 16:14:29 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:10:34 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 /* Libraries */
 # include "libft/libft.h"
 # include <unistd.h>
-# include <sys/types.h>
-# include <signal.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 /* Structure */
 typedef struct s_pipex
@@ -32,8 +33,11 @@ typedef struct s_pipex
 	char	**envp;
 }	t_pipex;
 
-/* Fonctions */
-void	errors(char	*str);
+/* Pipex.c */
+void	pipex(int ac, char **av, char **envp);
+
+/* Errors */
+void	ft_error(char	*msg);
 
 
 #endif
