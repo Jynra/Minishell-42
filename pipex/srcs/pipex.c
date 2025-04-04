@@ -6,33 +6,77 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:48:17 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/04 03:10:37 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:05:07 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 /* add ---->   static void create__pipes(t_pipex *pipex) */
+static void	create_pipes(t_pipex *pipex)
+{
+	int	i;
 
+	pipex->pipes = malloc(sizeof(int *) * (pipex->cmd_count - 1));
+	if (!pipex->pipes)
+		ft_error("Create_pipes Malloc failed");
+	i = 0;
+	while (i < pipex->cmd_count - 1)
+	{
+		pipex->pipes[i] = malloc(sizeof(int) * 2);
+		if (!pipex->pipes[i])
+			ft_error("Create_pipes Malloc failed");
+		if (pipe(pipex->pipes[i]) < 0)
+			ft_error("Pipe failed");
+		i++;
+	}
+}
 
 /* a modifier */
 static void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 {
-	(void) ac;
-	
-	pipex->infile = open(av[1], O_RDONLY);
-	if  (pipex->infile < 0)
-		ft_error("Cannot open infile");
-	pipex->outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (pipex->outfile < 0)
-		ft_error("Cannot open outfile");
-	if (pipe(pipex->pipe_fd) < 0)
-		ft_error("Pipe failed");
+	int	i;
+	int	start_idx;
+
+	pipex->here_doc = 0;
+	pipex->limiter = NULL;
+	if (ac >= 5 && !ft_strncmp(av[1], "here_doc", 9))
+	{
+		pipex->here_doc = 1;
+		pipex->cmd_count = ac - 4;
+		start_idx = 3;
+		pipex->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (pipex->outfile < 0)
+			ft_error("Cannot open outfile");
+		here_doc_input(pipex);
+	}
+	else
+	{
+		pipex->cmd_count = ac - 3;
+		start_idx = 2;
+		pipex->infile = open(av[1], O_RDONLY);
+		if (pipex->infile < 0)
+			ft_error("Cannot open infile");
+		pipex->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (pipex->outfile < 0)
+			ft_error("Cannot open outfile");
+	}
 	pipex->envp = envp;
-	pipex->cmd1_args = ft_split(av[2], ' ');
-	pipex->cmd2_args = ft_split(av[3], ' ');
-	pipex->cmd1_path = find_path(pipex->cmd1_args[0], envp);
-	pipex->cmd2_path = find_path(pipex->cmd2_args[0], envp);
+
+	pipex->cmds_args = malloc(sizeof(char **) * pipex->cmd_count);
+	pipex->cmds_paths = malloc(sizeof(char *) * pipex->cmd_count);
+	pipex->pids = malloc(sizeof(pid_t) * pipex->cmd_count);
+	if (!pipex->cmds_args || !pipex->cmds_paths || !pipex->pids)
+		ft_error("init_pipex Malloc failed");
+	
+	i = 0;
+	while (i < pipex->cmd_count)
+	{
+		pipex->cmds_args[i] = ft_split(av[start_idx + i], ' ');
+		pipex->cmds_paths[i] = find_path(pipex->cmds_args[i][0], envp);
+		i++;
+	}
+	create_pipes(pipex);
 }
 
 void	pipex(int ac, char **av, char **envp)

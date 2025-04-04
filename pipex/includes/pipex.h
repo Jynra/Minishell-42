@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:28:14 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/04 02:56:46 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:25:12 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_pipex
 	int		outfile;
 	int		**pipes;
 	char	***cmds_args;
-	char	*cmds_paths;
+	char	**cmds_paths;
 	pid_t	*pids;
 	int		cmd_count;
 	int		here_doc;
