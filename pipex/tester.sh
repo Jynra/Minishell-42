@@ -108,29 +108,27 @@ compare_output "$EXPECTED" "$ACTUAL" "Four commands"
 print_header "HEREDOC BONUS TESTS"
 
 # Test 5: Heredoc functionality
-echo -e "${YELLOW}Test 5: Heredoc functionality${RESET}"
+echo -e "\n${YELLOW}Test 5: Heredoc functionality${RESET}"
 
-# Create a file with expected output
-cat << EOF > $TEST_DIR/expected_heredoc.txt
-This is a test line with the word test
-Another line with test word
-EOF
+# Créer un fichier temporaire pour tester heredoc
+echo "This is a test line with the word test" > $TEST_DIR/heredoc_temp.txt
+echo "Another line with test word" >> $TEST_DIR/heredoc_temp.txt
+echo "Nothing should match here" >> $TEST_DIR/heredoc_temp.txt
+echo "EOF" >> $TEST_DIR/heredoc_temp.txt
 
+# Exécuter pipex avec heredoc en utilisant le fichier temporaire
+$PIPEX_PATH here_doc EOF "grep test" "wc -l" $TEST_DIR/pipex_heredoc.txt < $TEST_DIR/heredoc_temp.txt 2>/dev/null
+RETURN_CODE=$?
+print_result $RETURN_CODE "Program execution"
+
+# Créer la sortie attendue
 grep test << EOF | wc -l > $TEST_DIR/bash_heredoc.txt
 This is a test line with the word test
 Another line with test word
 Nothing should match here
 EOF
 
-# Run pipex with heredoc
-echo -e "This is a test line with the word test\nAnother line with test word\nNothing should match here\nEOF" > $TEST_DIR/heredoc_input.txt
-
-# Run pipex with heredoc using a trick since we can't interact with it in a script
-cat $TEST_DIR/heredoc_input.txt | $PIPEX_PATH here_doc EOF "grep test" "wc -l" $TEST_DIR/pipex_heredoc.txt 2>/dev/null
-RETURN_CODE=$?
-print_result $RETURN_CODE "Program execution"
-
-# Compare outputs
+# Comparer les sorties
 EXPECTED=$(cat $TEST_DIR/bash_heredoc.txt)
 ACTUAL=$(cat $TEST_DIR/pipex_heredoc.txt)
 compare_output "$EXPECTED" "$ACTUAL" "Heredoc functionality"
@@ -139,19 +137,22 @@ compare_output "$EXPECTED" "$ACTUAL" "Heredoc functionality"
 echo -e "\n${YELLOW}Test 6: Heredoc append mode${RESET}"
 echo "Previous content" > $TEST_DIR/append_test.txt
 
-# Create expected output
+# Créer un fichier temporaire pour tester heredoc
+echo "This should not match" > $TEST_DIR/heredoc_temp2.txt
+echo "EOF" >> $TEST_DIR/heredoc_temp2.txt
+
+# Exécuter pipex avec heredoc en mode append
+$PIPEX_PATH here_doc EOF "grep nothing" "wc -l" $TEST_DIR/append_test.txt < $TEST_DIR/heredoc_temp2.txt 2>/dev/null
+RETURN_CODE=$?
+print_result $RETURN_CODE "Program execution"
+
+# Créer la sortie attendue
 echo "Previous content" > $TEST_DIR/expected_append.txt
 grep nothing << EOF | wc -l >> $TEST_DIR/expected_append.txt
 This should not match
 EOF
 
-# Run pipex with heredoc in append mode
-echo -e "This should not match\nEOF" > $TEST_DIR/heredoc_input2.txt
-cat $TEST_DIR/heredoc_input2.txt | $PIPEX_PATH here_doc EOF "grep nothing" "wc -l" $TEST_DIR/append_test.txt 2>/dev/null
-RETURN_CODE=$?
-print_result $RETURN_CODE "Program execution"
-
-# Compare outputs
+# Comparer les sorties
 EXPECTED=$(cat $TEST_DIR/expected_append.txt)
 ACTUAL=$(cat $TEST_DIR/append_test.txt)
 compare_output "$EXPECTED" "$ACTUAL" "Heredoc append mode"

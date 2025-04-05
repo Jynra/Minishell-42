@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 17:12:02 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/04 17:15:59 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/05 15:52:50 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	here_doc_input(t_pipex *pipex)
 {
-	int	tmp_fd;
+	int		tmp_fd;
 	char	*line;
 	size_t	limiter_len;
 

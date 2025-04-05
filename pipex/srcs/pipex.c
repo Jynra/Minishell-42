@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:48:17 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/04 13:05:07 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/05 16:08:18 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 	if (ac >= 5 && !ft_strncmp(av[1], "here_doc", 9))
 	{
 		pipex->here_doc = 1;
+		pipex->limiter = ft_strdup(av[2]);
 		pipex->cmd_count = ac - 4;
 		start_idx = 3;
 		pipex->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
