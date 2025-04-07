@@ -6,13 +6,12 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:48:17 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/05 16:08:18 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/07 11:15:22 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-/* add ---->   static void create__pipes(t_pipex *pipex) */
 static void	create_pipes(t_pipex *pipex)
 {
 	int	i;
@@ -32,7 +31,6 @@ static void	create_pipes(t_pipex *pipex)
 	}
 }
 
-/* a modifier */
 static void	init_pipex(t_pipex *pipex, int ac, char **av, char **envp)
 {
 	int	i;

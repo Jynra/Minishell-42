@@ -9,6 +9,55 @@ YELLOW="\033[1;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
 
+# Function to print header
+print_header() {
+    echo -e "\n${BLUE}===============================================${RESET}"
+    echo -e "${BLUE}   $1${RESET}"
+    echo -e "${BLUE}===============================================${RESET}\n"
+}
+
+# Function to print test result
+print_result() {
+    if [ $1 -eq 0 ]; then
+        echo -e "${GREEN}✓ PASS: $2${RESET}"
+    else
+        echo -e "${RED}✗ FAIL: $2 - Exit code: $1${RESET}"
+    fi
+}
+
+# Function to compare output
+compare_output() {
+    local expected="$1"
+    local actual="$2"
+    local test_name="$3"
+    
+    if [ "$expected" = "$actual" ]; then
+        print_result 0 "$test_name - Output matches"
+    else
+        print_result 1 "$test_name - Output doesn't match"
+        echo -e "${YELLOW}Expected: '$expected'${RESET}"
+        echo -e "${YELLOW}Actual  : '$actual'${RESET}"
+    fi
+}
+
+# ======== COMPILATION TEST ========
+print_header "COMPILATION TEST"
+
+echo -e "${YELLOW}Cleaning previous build...${RESET}"
+make fclean &> /dev/null
+print_result $? "Clean previous build"
+
+echo -e "\n${YELLOW}Compiling project...${RESET}"
+make &> /dev/null
+COMPILATION_RESULT=$?
+print_result $COMPILATION_RESULT "Compilation"
+
+# Exit if compilation failed
+if [ $COMPILATION_RESULT -ne 0 ]; then
+    echo -e "${RED}Compilation failed. Exiting tests.${RESET}"
+    exit 1
+fi
+
 # ======== SETUP ========
 # Create test directory
 mkdir -p $TEST_DIR
@@ -175,4 +224,10 @@ print_result $RETURN_CODE "Invalid command (should display error)"
 print_header "CLEANUP"
 echo -e "Removing test files and directory..."
 rm -rf $TEST_DIR
+
+# Clean up project files
+echo -e "\n${YELLOW}Cleaning up project files...${RESET}"
+make fclean &> /dev/null
+print_result $? "Clean project files"
+
 echo -e "${GREEN}All tests completed!${RESET}"
