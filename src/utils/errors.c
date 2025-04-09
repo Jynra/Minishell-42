@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 15:57:15 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/10 00:13:31 by ellucas          ###   ########.fr       */
+/*   Created: 2025/04/09 23:50:12 by ellucas           #+#    #+#             */
+/*   Updated: 2025/04/09 23:50:14 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../../includes/executor.h"
 
-int main(int argc, char **argv)
+void ft_error(char *msg)
 {
-    (void)argc;
-    (void)argv;
-    
-    // Code temporaire jusqu'à l'implémentation complète
-    printf("Minishell en cours de développement\n");
-    return (0);
+    perror(msg);
+    exit(EXIT_FAILURE);
+}
+
+void free_array(char **array)
+{
+    int i;
+
+    if (!array)
+        return;
+
+    i = 0;
+    while (array[i])
+    {
+        free(array[i]);
+        i++;
+    }
+    free(array);
 }

@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:44:54 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/09 15:45:42 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/09 23:57:38 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ char	**convert_simple_command(t_simple_command *simple_cmd)
 /*
 ** Libère un tableau de chaînes de caractères
 */
+/*
 void	free_array(char **array)
 {
 	int	i;
@@ -97,3 +98,4 @@ void	free_array(char **array)
 	}
 	free(array);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:48:11 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/09 15:48:13 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/09 23:54:10 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,48 @@ int	execute_builtin(char **args, t_executor *exec)
 		return (builtin_exit(args, exec));
 
 	return (127);  // Commande non trouvée
+}
+
+int builtin_cd(char **args)
+{
+    printf("cd: pas encore implémenté\n");
+    (void)args;
+    return (0);
+}
+
+int builtin_pwd(void)
+{
+    printf("pwd: pas encore implémenté\n");
+    return (0);
+}
+
+int builtin_export(char **args, char ***envp)
+{
+    printf("export: pas encore implémenté\n");
+    (void)args;
+    (void)envp;
+    return (0);
+}
+
+int builtin_unset(char **args, char ***envp)
+{
+    printf("unset: pas encore implémenté\n");
+    (void)args;
+    (void)envp;
+    return (0);
+}
+
+int builtin_env(char **envp)
+{
+    printf("env: pas encore implémenté\n");
+    (void)envp;
+    return (0);
+}
+
+int builtin_exit(char **args, t_executor *exec)
+{
+    printf("exit: pas encore implémenté\n");
+    (void)args;
+    (void)exec;
+    return (0);
 }

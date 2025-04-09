@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:44:33 by ellucas           #+#    #+#             */
-/*   Updated: 2025/04/09 15:45:01 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/04/09 22:22:29 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	child_process(t_executor *exec, int i)
 */
 char	*find_path(char *cmd, char **envp)
 {
-	char	*path;
+//	char	*path;
 	char	*dir;
 	char	*cmd_path;
 	char	**dirs;
