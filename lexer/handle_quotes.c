@@ -6,7 +6,7 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:31 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 13:10:55 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:48:39 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,6 @@ char	*extract_quoted_word(t_lexer *lexer, char quote_char)
 	start_pos = lexer->current_pos;
 	len = count_quoted_word_length(lexer, quote_char);
 	i = 0;
-	if (len == -1)
-		return (NULL);
-	word = malloc(sizeof(char) * (len + 1));
-	if (!word)
-	{
-		perror("malloc failed");
-		return (NULL);
-	}
-	lexer->current_pos = start_pos + 1;
-	while (i < len)
-	{
-		word[i++] = current_char(lexer);
-		advance(lexer);
-	}
-	word[len] = '\0';
-	return (word);
-}
-
-char	*extract_double_quoted_word(t_lexer *lexer)
-{
-	int		start_pos;
-	int		len;
-	char	*word;
-	int		i;
-
-	i = 0;
-	start_pos = lexer->current_pos;
-	len = count_double_quoted_word_length(lexer);
 	if (len == -1)
 		return (NULL);
 	word = malloc(sizeof(char) * (len + 1));

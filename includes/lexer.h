@@ -6,7 +6,7 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:30:27 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 13:51:18 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:48:45 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void			handle_pipe(t_lexer *lexer);
 // handle_quotes.c
 char			*handle_quote_content(t_lexer *lexer, char quote_char);
 char			*extract_quoted_word(t_lexer *lexer, char quote_char);
-char			*extract_double_quoted_word(t_lexer *lexer);
 int				is_quote(char c);
 
 // handle_redirection.c
