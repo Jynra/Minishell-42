@@ -6,7 +6,7 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:30:27 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 15:48:45 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:44:50 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ void			free_token_list(t_token_list *list);
 // token.c
 t_token			*create_token(t_token_type type, char *value);
 void			add_eof_token(t_lexer *lexer);
+
+// ft_functions.c
+int				ft_isalnum(int c);
+int				ft_isalpha(int c);
+int				ft_isdigit(int c);
+char			*ft_strdup(const char *s);
+size_t			ft_strlen(const char *str);
 
 // main.c
 void			print_tokens(t_token_list *list);

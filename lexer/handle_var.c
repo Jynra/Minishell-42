@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_var.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/15 16:47:43 by ebornand          #+#    #+#             */
+/*   Updated: 2025/04/15 16:47:45 by ebornand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexer.h"
 
 char	*extract_var_name(t_lexer *lexer, int len)
@@ -27,7 +39,7 @@ int	calculate_var_length(t_lexer *lexer)
 	int	len;
 
 	len = 0;
-	while (isalnum(current_char(lexer)) || current_char(lexer) == '_')
+	while (ft_isalnum(current_char(lexer)) || current_char(lexer) == '_')
 	{
 		advance(lexer);
 		len++;
