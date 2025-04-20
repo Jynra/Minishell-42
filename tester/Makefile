@@ -6,7 +6,7 @@
 #    By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 09:09:40 by ellucas           #+#    #+#              #
-#    Updated: 2025/04/10 09:09:43 by ellucas          ###   ########.fr        #
+#    Updated: 2025/04/20 19:44:29 by ellucas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,23 @@ LIBS = -lreadline -L $(LIBFT_DIR) -lft
 TEST_SRC = minishell_tester.c
 
 # Sources du projet original nécessaires pour les tests
-PROJECT_SRC = $(SRC_DIR)/executor/executor.c \
+PROJECT_SRC = main.c \
+			$(SRC_DIR)/utils/errors.c
+
+EXECUTOR_SRC = $(SRC_DIR)/executor/executor.c \
 			$(SRC_DIR)/executor/builtins/builtins.c \
 			$(SRC_DIR)/executor/builtins/echo.c \
 			$(SRC_DIR)/executor/pipex/pipes.c \
 			$(SRC_DIR)/executor/pipex/process.c \
 			$(SRC_DIR)/executor/pipex/path.c \
-			$(SRC_DIR)/utils/errors.c
 
+LEXER_SRC = $(SRC_DIR)/lexer/lexer.c \
+
+PARSER_SRC = $(SRC_DIR)/parser/parser_main.c \
+			$(SRC_DIR)/parser/parser_cmd.c \
+			$(SRC_DIR)/parser/parser_redirections.c \
+			$(SRC_DIR)/parser/parser_utils.c \
+			$(SRC_DIR)/parser/parser_error.c \
 # Objets
 TEST_OBJ = $(OBJ_DIR)/minishell_tester.o
 PROJECT_OBJ = $(PROJECT_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -46,7 +55,7 @@ PROJECT_OBJ = $(PROJECT_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 all: $(NAME_TEST)
 
 $(NAME_TEST): make_libft $(TEST_OBJ) $(PROJECT_OBJ)
-	$(CC) $(CFLAGS) $(TEST_OBJ) $(PROJECT_OBJ) $(LIBS) -o $(NAME_TEST)
+	$(CC) $(CFLAGS) $(TEST_OBJ) $(PROJECT_OBJ) $(EXECUTOR_SRC) $(LEXER_SRC) $(PARSER_SRC) $(LIBS) -o $(NAME_TEST)
 
 # Création des dossiers pour les objets et compilation
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
