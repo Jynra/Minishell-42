@@ -6,7 +6,7 @@
 #    By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/09 15:52:25 by ellucas           #+#    #+#              #
-#    Updated: 2025/04/23 14:31:38 by ellucas          ###   ########.fr        #
+#    Updated: 2025/04/23 15:29:21 by ellucas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBS = -lreadline -L $(LIBFT_DIR) -lft
 # Sources
 SRC_FILES = main.c \
 			
-EXECUTOR_FILES = $(SRC_DIR)/executor/executor.c \
+EXECUTOR_FILES = \
+			$(SRC_DIR)/executor/executor.c \
 			$(SRC_DIR)/executor/builtins/builtins.c \
 			$(SRC_DIR)/executor/builtins/echo.c \
 			$(SRC_DIR)/executor/pipex/pipes.c \
@@ -42,7 +43,8 @@ EXECUTOR_FILES = $(SRC_DIR)/executor/executor.c \
 #			$(SRC_DIR)/executor/builtins/env.c \
 #			$(SRC_DIR)/executor/builtins/exit.c \
 
-#LEXER_FILES = $(SRC_DIR)/lexer/error_msg.c \
+LEXER_FILES = \
+#			$(SRC_DIR)/lexer/error_msg.c \
 #			$(SRC_DIR)/lexer/ft_functions.c \
 #			$(SRC_DIR)/lexer/handle_pipes.c \
 #			$(SRC_DIR)/lexer/handle_quotes.c \
@@ -57,22 +59,26 @@ EXECUTOR_FILES = $(SRC_DIR)/executor/executor.c \
 #			$(SRC_DIR)/lexer/token_list.c \
 #			$(SRC_DIR)/lexer/word.c \
 
-PARSER_FILES = $(SRC_DIR)/parser/parser_cmd.c \
+PARSER_FILES = \
+			$(SRC_DIR)/parser/parser_cmd.c \
 			$(SRC_DIR)/parser/parser_error.c \
 			$(SRC_DIR)/parser/parser_main.c \
-			$(SRC_DIR)/parser/parser_pipes.c \
 			$(SRC_DIR)/parser/parser_redirections.c \
 			$(SRC_DIR)/parser/parser_utils.c \
-			$(SRC_DIR)/parser/lexer.c \
-			$(SRC_DIR)/parser/command.c \
+#			$(SRC_DIR)/parser/parser_pipes.c \
 
-UTILS_FILES = $(SRC_DIR)/utils/errors.c \
+UTILS_FILES = \
+			$(SRC_DIR)/utils/errors.c \
 			$(SRC_DIR)/utils/command_struct.c \
 			$(SRC_DIR)/utils/simple_command.c \
 #			$(SRC_DIR)/utils/signals.c \
 
 # Objets
-OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_FILES = $(EXECUTOR_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
+            $(LEXER_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
+            $(PARSER_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
+            $(UTILS_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
 # Ajout du dossier racine pour main.c
 MAIN_OBJ = $(OBJ_DIR)/main.o
 
