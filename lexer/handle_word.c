@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:47 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:50 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:01:21 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 t_token_type	determine_word_type(t_lexer *lexer)
 {
@@ -36,7 +36,7 @@ void	handle_word(t_lexer *lexer)
 		return ;
 	type = determine_word_type(lexer);
 	token = create_token(type, word);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 	free(word);
 }

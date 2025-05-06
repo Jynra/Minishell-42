@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_pipe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:24 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:28 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/23 10:57:13 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 void	handle_pipe(t_lexer *lexer)
 {
@@ -19,7 +19,7 @@ void	handle_pipe(t_lexer *lexer)
 
 	value = ft_strdup("|");
 	token = create_token(PIPE, value);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 	advance(lexer);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:43 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:45 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:00:15 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 char	*extract_var_name(t_lexer *lexer, int len)
 {
@@ -87,6 +87,6 @@ void	handle_variable(t_lexer *lexer)
 		token = create_token(VAR, var_name);
 		free(var_name);
 	}
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }

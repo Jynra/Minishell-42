@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_functions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:10 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:20 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/22 14:07:19 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 int	ft_isalnum(int c)
 {

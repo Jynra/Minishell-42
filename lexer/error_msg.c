@@ -6,11 +6,11 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:20 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/10 21:14:30 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/22 14:05:17 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 void	write_error(const char *msg)
 {

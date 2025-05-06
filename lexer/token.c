@@ -6,7 +6,7 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:49 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 13:38:03 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:04:31 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	add_eof_token(t_lexer *lexer)
 	t_token	*eof_token;
 
 	eof_token = create_token(EOF_TOKEN, NULL);
-	add_token(lexer->tokens, eof_token);
+	add_token(lexer, eof_token);
 	free(eof_token);
 }

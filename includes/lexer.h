@@ -6,13 +6,17 @@
 /*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:30:27 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:44:50 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:05:36 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef enum e_token_type
 {
@@ -90,6 +94,7 @@ t_lexer			init_lexer(char *input);
 void			tokenize(t_lexer *lexer);
 void			handle_quote(t_lexer *lexer);
 void			free_lexer(t_lexer *lexer);
+char			*get_input(void);
 
 // special.c
 int				is_special_char(char c);
@@ -103,6 +108,10 @@ void			free_token_list(t_token_list *list);
 // token.c
 t_token			*create_token(t_token_type type, char *value);
 void			add_eof_token(t_lexer *lexer);
+
+// word.c
+char			*extract_word(t_lexer *lexer);
+int				calculate_word_length(t_lexer *lexer);
 
 // ft_functions.c
 int				ft_isalnum(int c);

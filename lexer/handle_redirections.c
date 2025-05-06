@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirections.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebornand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ebornand <ebornand@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:37 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:40 by ebornand         ###   ########.fr       */
+/*   Updated: 2025/04/23 10:59:34 by ebornand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../includes/lexer.h"
 
 int	is_redirection(t_lexer *lexer)
 {
@@ -39,7 +39,7 @@ void	handle_input_redirection(t_lexer *lexer)
 		value = ft_strdup("<");
 	}
 	token = create_token(type, value);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }
 
@@ -62,7 +62,7 @@ void	handle_output_redirection(t_lexer *lexer)
 		value = ft_strdup(">");
 	}
 	token = create_token(type, value);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }
 
