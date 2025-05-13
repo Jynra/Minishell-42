@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:47 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:32 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:52:06 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	handle_word(t_lexer *lexer)
 		return ;
 	type = determine_word_type(lexer);
 	token = create_token(type, word);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 	free(word);
 }

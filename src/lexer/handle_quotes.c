@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:31 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:25 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:08:06 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ char	*extract_quoted_word(t_lexer *lexer, char quote_char)
 		perror("malloc failed");
 		return (NULL);
 	}
-	lexer->current_pos = start_pos + 1;
+	lexer->current_pos = start_pos;
 	while (i < len)
 	{
-		word[i++] = current_char(lexer);
+		word[i] = current_char(lexer);
 		advance(lexer);
+		i++;
 	}
 	word[len] = '\0';
 	return (word);

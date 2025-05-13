@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:35 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:38 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:55:03 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	handle_quote(t_lexer *lexer)
 	if (!word)
 		return ;
 	token = create_token(ARG, word);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 	advance(lexer);
 }
@@ -64,4 +64,16 @@ void	free_lexer(t_lexer *lexer)
 	if (!lexer)
 		return ;
 	free_token_list(lexer->tokens);
+}
+
+char	*get_input(void)
+{
+	char	*line;
+	
+	line = readline("minishell$ ");
+	if (!line)
+		return (NULL);
+	if (*line)
+		add_history(line);
+	return (line);
 }

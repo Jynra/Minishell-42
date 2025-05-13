@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:49 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:47 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:55:45 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	add_eof_token(t_lexer *lexer)
 	t_token	*eof_token;
 
 	eof_token = create_token(EOF_TOKEN, NULL);
-	add_token(lexer->tokens, eof_token);
+	add_token(lexer, eof_token);
 	free(eof_token);
 }

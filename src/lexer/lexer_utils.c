@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:25:40 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:35 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:54:52 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	count_quoted_word_length(t_lexer *lexer, char quote_char)
 	int	len;
 
 	len = 0;
-	advance(lexer);
 	while (current_char(lexer) != quote_char && current_char(lexer) != '\0')
 	{
 		advance(lexer);

@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:37 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:27 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:19:25 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	handle_input_redirection(t_lexer *lexer)
 		value = ft_strdup("<");
 	}
 	token = create_token(type, value);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }
 
@@ -62,7 +62,7 @@ void	handle_output_redirection(t_lexer *lexer)
 		value = ft_strdup(">");
 	}
 	token = create_token(type, value);
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }
 

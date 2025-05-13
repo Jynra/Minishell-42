@@ -6,7 +6,7 @@
 /*   By: ellucas <ellucas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:47:43 by ebornand          #+#    #+#             */
-/*   Updated: 2025/04/20 18:02:30 by ellucas          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:51:55 by ellucas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void	handle_variable(t_lexer *lexer)
 		token = create_token(VAR, var_name);
 		free(var_name);
 	}
-	add_token(lexer->tokens, token);
+	add_token(lexer, token);
 	free(token);
 }
